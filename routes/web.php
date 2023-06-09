@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JournalController;
+use App\Http\Controllers\PDFController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,12 +15,14 @@ use App\Http\Controllers\JournalController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::resource('journal', JournalController::class)->middleware('auth');
 Route::post('/save', [JournalController::class, 'saveEntry'])->middleware('auth')->name('journal.saveEntry');
 Auth::routes();
+Route::get('/export',[JournalController::class, 'index'])->middleware('auth')->name('export');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

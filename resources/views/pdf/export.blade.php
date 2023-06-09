@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('styles')
-<link rel="stylesheet" href="{{asset('css/style.css')}}">
+<link rel="stylesheet" href="{{asset('css/export.css')}}">
 @endsection
 
 @section('navbar')
-<nav class="navbar navbar-expand-md navbar-dark shadow-lg">
+<nav class="navbar navbar-expand-md navbar-light shadow-sm">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
-            {{ config('app.name', 'Laravel') }}
+            {{auth()->user()->name}}
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
@@ -62,35 +62,8 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        
-        <div class="col-md-8">
-            <div class="card-glass">
-                <div class="card-header text-white mb-3"><h3>Entry for today</h3></div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <form action="{{route('journal.saveEntry')}}" method="POST">
-                        @csrf
-                        
-                        <div class="form-group">
-                            
-                            <textarea class="form-control" id="exampleFormControlTextarea1" name="entry" rows="3" required></textarea>
-                        </div>
-                        <div class="mt-2 d-flex justify-content-end">
-                            <button type="submit" class="btn btn-success ">Submit</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    @foreach($mes as $message)
+    
+    @foreach($data as $message)
     <div class="row justify-content-center mt-3">
         <div class="col-md-8">
             <div class="card-glass">
