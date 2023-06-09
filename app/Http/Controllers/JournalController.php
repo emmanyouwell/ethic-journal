@@ -47,25 +47,31 @@ class JournalController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $data = Journal::where('id', $id)->get();
+        return view('edit',compact('data'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $entry = Journal::find($id);
+        $entry->entry = $request['entry'];
+        $entry->save();
+        return redirect()->route('home');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        
+        Journal::destroy($id);
+        return redirect()->route('home');
     }
 
     public function saveEntry(Request $request){

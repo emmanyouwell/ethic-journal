@@ -15,6 +15,7 @@
     @yield('styles')
     
     <!-- Scripts -->
+    @yield('script-head')
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     
 </head>
@@ -27,5 +28,6 @@
             @yield('content')
         </main>
     </div>
+    
 </body>
 </html>

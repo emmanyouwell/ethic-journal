@@ -23,6 +23,6 @@ Route::resource('journal', JournalController::class)->middleware('auth');
 Route::post('/save', [JournalController::class, 'saveEntry'])->middleware('auth')->name('journal.saveEntry');
 Auth::routes();
 Route::get('/export',[JournalController::class, 'index'])->middleware('auth')->name('export');
-
+Route::get('/delete/{id}',[JournalController::class,'destroy'])->middleware('auth')->name('journal.delete');
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
