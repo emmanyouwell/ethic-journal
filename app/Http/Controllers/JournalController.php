@@ -74,6 +74,7 @@ class JournalController extends Controller
         $message->updated_at = now();
         $message->user_id = auth()->user()->id;
         $message->save();
-        return redirect()->route()
+        $mes = Journal::where('user_id',auth()->user()->id)->get();
+        return redirect()->route('home');
     }
 }

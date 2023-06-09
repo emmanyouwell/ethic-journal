@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 Route::resource('journal', JournalController::class)->middleware('auth');
-
+Route::post('/save', [JournalController::class, 'saveEntry'])->middleware('auth')->name('journal.saveEntry');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Journal;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $mes = Journal::latest()->where('user_id',auth()->user()->id)->get();
+        
+        return view('home', compact('mes'));
     }
 }

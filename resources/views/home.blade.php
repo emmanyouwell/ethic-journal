@@ -15,7 +15,9 @@
                         </div>
                     @endif
 
-                    <form action="{{route('journal.index')}}">
+                    <form action="{{route('journal.saveEntry')}}" method="POST">
+                        @csrf
+                        
                         <div class="form-group">
                             
                             <textarea class="form-control" id="exampleFormControlTextarea1" name="entry" rows="3"></textarea>
@@ -28,15 +30,16 @@
             </div>
         </div>
     </div>
+    @foreach($mes as $message)
     <div class="row justify-content-center mt-3">
         <div class="col-md-8">
             <div class="card-glass">
-                <p>message here</p>
-                <p class="card-footer-glass">date here</p>
+                <p>{{$message->entry}}</p>
+                <p class="card-footer-glass">{{$message->created_at->toDayDateTimeString()}}</p>
             </div>
         </div>
     </div>
-    
+    @endforeach
 
 </div>
 @endsection
