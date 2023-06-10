@@ -16,8 +16,9 @@ class JournalController extends Controller
      */
     public function index()
     {
-        $data = Journal::latest()->where('user_id', auth()->user()->id)->get();
-        return view('pdf.export', compact('data'));
+        $data = Journal::latest()->where('user_id', auth()->user()->id)->paginate(3);
+        $counter = $data->count();
+        return view('pdf.export', compact('data','counter'));
     }
 
     /**

@@ -67,12 +67,23 @@
     <div class="row justify-content-center mt-3">
         <div class="col-md-8">
             <div class="card-glass">
+                <div class="card-header">
+                    <h3>Entry #{{$counter--}}</h3>
+                </div>
+                <hr>
                 <p>{{$message->entry}}</p>
+                <hr>
                 <p class="card-footer-glass">{{$message->created_at->toDayDateTimeString()}}</p>
             </div>
         </div>
     </div>
+  
     @endforeach
-
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-8">
+            <div>{{$data->links()}}</div>
+        </div>
+       
+    </div>
 </div>
 @endsection
