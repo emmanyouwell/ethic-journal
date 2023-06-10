@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $mes = Journal::latest()->where('user_id',auth()->user()->id)->get();
+        $mes = Journal::latest()->where('user_id',auth()->user()->id)->paginate(3);
         $counter = $mes->count();
         return view('home', compact('mes', 'counter'));
     }
