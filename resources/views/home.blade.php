@@ -99,8 +99,12 @@
     <div class="row justify-content-center mt-3">
         <div class="col-md-8">
             <div class="card-glass">
+                <div class="card-header">
+                    <h3 class="text-white">Entry #{{$counter--}}</h3>
+                </div>
+                <hr>
                 <p>{{$message->entry}}</p>
-                
+                <hr>
                 <div class="card-footer-glass d-flex justify-content-between">
                     <p>{{$message->created_at->toDayDateTimeString()}}
                     </p>
