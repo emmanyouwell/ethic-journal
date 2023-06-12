@@ -39,11 +39,24 @@
                         </li>
                     @endif
                 @else
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        Styles
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{route('pickStyle',4)}}">Default</a>
+                        <a class="dropdown-item" href="{{route('pickStyle',3)}}">Pink Paint</a>
+                        <a class="dropdown-item" href="{{route('pickStyle',1)}}">Red & Black</a>
+                        <a class="dropdown-item" href="{{route('pickStyle',2)}}">Minimalist Blue</a>
+                        <a class="dropdown-item" href="{{route('pickStyle',5)}}">Retro Card</a>
+
+                    </div>
+                </li>
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
                         </a>
-
+                        
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
@@ -51,9 +64,7 @@
                                 {{ __('Logout') }}
                             </a>
                             <a href="{{route('export')}}" class="dropdown-item">Export as PDF</a>
-                            <a href="{{route('pickStyle',3)}}">pink</a>
-                            <a href="{{route('pickStyle',1)}}">red</a>
-                            <a href="{{route('pickStyle',2)}}">blue</a>
+                            
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
@@ -73,14 +84,23 @@
     @foreach($data as $message)
     <div class="row justify-content-center mt-3">
         <div class="col-md-8">
+            @if (session()->has('color'))
+            <div class="card-glass" style="color:{{session()->get('color')}}">
+            @else
             <div class="card-glass">
-                @if (Session::has('style'))
-                @if(Session::get('style') === 'img/red.avif')
+            @endif
+                @if(session()->has('style'))
+                @if(session()->get('style') === 'img/red.avif')
                 <div class="card-img" style="background: url({{asset('img/red.avif')}}); background-size: cover;"></div>
-                @elseif(Session::get('style') === 'img/blue.avif')
+                @elseif(session()->get('style') === 'img/blue.avif')
                 <div class="card-img" style="background: url({{asset('img/blue.avif')}}); background-size: cover;"></div>
-                @elseif(Session::get('style') === 'img/pink.avif')
+                @elseif(session()->get('style') === 'img/pink.avif')
                 <div class="card-img" style="background: url({{asset('img/pink.avif')}}); background-size: cover;"></div>
+                @elseif(session()->get('style') === "")
+                <div class="card-img"></div>
+                @elseif(session()->get('style')==='img/retro.avif')
+                <div class="card-img" style="background: url({{asset('img/retro.avif')}}); background-size: cover; filter: brightness(50%);"></div>
+
                 @endif
                 @endif
               

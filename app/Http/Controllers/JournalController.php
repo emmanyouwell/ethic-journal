@@ -7,7 +7,7 @@ use App\Models\Journal;
 use App\Models\User;
 use Auth;
 use DB;
-
+use Session;
 
 class JournalController extends Controller
 {
@@ -16,25 +16,38 @@ class JournalController extends Controller
      */
     public function index()
     {
+      
         $data = Journal::latest()->where('user_id', auth()->user()->id)->paginate(3);
-        $counter = $data->count();
-        return view('pdf.export', compact('data','counter'));
+        
+        
+        return view('pdf.export', compact('data'));
     }
 
     public function styleManager($id){
-        $style=null;
-        if ($id == 1){
-            $style = "img/red.avif";
-        }
-        else if ($id == 2){
-            $style = "img/blue.avif";
-        }
-        else if ($id == 3){
-            $style = "img/pink.avif";
-        }
-        
-        $data = Journal::latest()->where('user_id', auth()->user()->id)->paginate(3);
-        return redirect()->route('export')->with('style',$style);
+            $color=null;
+            $style=null;
+            if ($id == 1){
+                $style = "img/red.avif";
+                $color = "white";
+            }
+            else if ($id == 2){
+                $style = "img/blue.avif";
+                $color = "white";
+            }
+            else if ($id == 3){
+                $style = "img/pink.avif";
+                $color = "black";
+            }
+            else if ($id == 4){
+                $style = "";
+                $color = "";
+            }
+            else if ($id==5){
+                $style="img/retro.avif";
+                $color="white";
+            }
+            session(['style'=>$style, 'color'=>$color]);
+        return redirect()->route('export');
     }
     /**
      * Show the form for creating a new resource.
