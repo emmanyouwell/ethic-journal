@@ -4,6 +4,9 @@
 <link rel="stylesheet" href="{{asset('css/export.css')}}">
 @endsection
 
+@section('script-foot')
+<script src="{{asset('js/script.js')}}"></script>
+@endsection
 @section('navbar')
 <nav class="navbar navbar-expand-md navbar-light shadow-sm">
     <div class="container">
@@ -48,6 +51,10 @@
                                 {{ __('Logout') }}
                             </a>
                             <a href="{{route('export')}}" class="dropdown-item">Export as PDF</a>
+                            <a href="{{route('pickStyle',3)}}">pink</a>
+                            <a href="{{route('pickStyle',1)}}">red</a>
+                            <a href="{{route('pickStyle',2)}}">blue</a>
+
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
@@ -67,6 +74,17 @@
     <div class="row justify-content-center mt-3">
         <div class="col-md-8">
             <div class="card-glass">
+                @if (Session::has('style'))
+                @if(Session::get('style') === 'img/red.avif')
+                <div class="card-img" style="background: url({{asset('img/red.avif')}}); background-size: cover;"></div>
+                @elseif(Session::get('style') === 'img/blue.avif')
+                <div class="card-img" style="background: url({{asset('img/blue.avif')}}); background-size: cover;"></div>
+                @elseif(Session::get('style') === 'img/pink.avif')
+                <div class="card-img" style="background: url({{asset('img/pink.avif')}}); background-size: cover;"></div>
+                @endif
+                @endif
+              
+                
                 <div class="card-header">
                     <h3>Entry #{{($data->total())-(($data->currentPage()-1)*$data->perPage()+($loop->index))}}</h3>
                 </div>

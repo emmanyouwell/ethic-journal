@@ -28,6 +28,6 @@
             @yield('content')
         </main>
     </div>
-    
+    @yield('script-foot')
 </body>
 </html>

@@ -22,5 +22,5 @@ Route::post('/save', [JournalController::class, 'saveEntry'])->middleware('auth'
 Auth::routes();
 Route::get('/export',[JournalController::class, 'index'])->middleware('auth')->name('export');
 Route::get('/delete/{id}',[JournalController::class,'destroy'])->middleware('auth')->name('journal.delete');
-
+Route::get('export/style/{id}',[JournalController::class, 'styleManager'])->middleware('auth')->name('pickStyle');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

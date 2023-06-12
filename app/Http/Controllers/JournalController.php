@@ -21,6 +21,21 @@ class JournalController extends Controller
         return view('pdf.export', compact('data','counter'));
     }
 
+    public function styleManager($id){
+        $style=null;
+        if ($id == 1){
+            $style = "img/red.avif";
+        }
+        else if ($id == 2){
+            $style = "img/blue.avif";
+        }
+        else if ($id == 3){
+            $style = "img/pink.avif";
+        }
+        
+        $data = Journal::latest()->where('user_id', auth()->user()->id)->paginate(3);
+        return redirect()->route('export')->with('style',$style);
+    }
     /**
      * Show the form for creating a new resource.
      */
