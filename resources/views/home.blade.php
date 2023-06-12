@@ -100,14 +100,23 @@
         <div class="col-md-8">
             <div class="card-glass">
                 <div class="card-header">
-                    <h3 class="text-white">Entry #{{$counter--}}</h3>
+                   
+                    <h3 class="text-white">Entry #{{($mes->total())-(($mes->currentPage()-1)*$mes->perPage()+($loop->index))}}</h3>
+                  
                 </div>
                 <hr>
                 <p>{{$message->entry}}</p>
                 <hr>
                 <div class="card-footer-glass d-flex justify-content-between">
-                    <p>{{$message->created_at->toDayDateTimeString()}}
+                    <p>{{date('l, F d, Y h:i',strtotime($message->created_at))}}
+                        {{-- {{dd((int)date('h',strtotime($message->created_at)))}} --}}
+                    @if(((int)date('H',strtotime($message->created_at))) > 11)
+                        PM
+                    @else
+                        AM
+                    @endif
                     </p>
+
                     <div>
                         <a href="{{route('journal.edit',$message->id)}}" class="text-info"><i class="me-2 fa-solid fa-pen-to-square"></i></a>
                         <a href="{{route('journal.delete',$message->id)}}" class="text-warning"><i class="fa-solid fa-trash"></i></a>

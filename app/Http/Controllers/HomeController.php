@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Journal;
-
+use DB;
 class HomeController extends Controller
 {
     /**
@@ -25,7 +25,13 @@ class HomeController extends Controller
     public function index()
     {
         $mes = Journal::latest()->where('user_id',auth()->user()->id)->paginate(3);
+ 
+      
+        
+        // $mes = DB::table('journal')->select(DB::raw('ROW_NUMBER() OVER(ORDER BY CREATED_AT DESC) AS Row,id, entry, created_at'))->where('user_id', auth()->user()->id)->paginate(3);
+        // dd($mes);
+        
         $counter = $mes->count();
-        return view('home', compact('mes', 'counter'));
+        return view('home', compact('mes'));
     }
 }
