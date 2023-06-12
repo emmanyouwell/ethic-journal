@@ -108,13 +108,7 @@
                 <p>{{$message->entry}}</p>
                 <hr>
                 <div class="card-footer-glass d-flex justify-content-between">
-                    <p>{{date('l, F d, Y h:i',strtotime($message->created_at))}}
-                        {{-- {{dd((int)date('h',strtotime($message->created_at)))}} --}}
-                    @if(((int)date('H',strtotime($message->created_at))) > 11)
-                        PM
-                    @else
-                        AM
-                    @endif
+                    <p>{{$message->created_at->toDayDateTimeString()}}
                     </p>
 
                     <div>

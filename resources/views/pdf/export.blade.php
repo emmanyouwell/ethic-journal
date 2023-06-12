@@ -68,7 +68,7 @@
         <div class="col-md-8">
             <div class="card-glass">
                 <div class="card-header">
-                    <h3>Entry #{{$counter--}}</h3>
+                    <h3>Entry #{{($data->total())-(($data->currentPage()-1)*$data->perPage()+($loop->index))}}</h3>
                 </div>
                 <hr>
                 <p>{{$message->entry}}</p>
