@@ -46,6 +46,10 @@ class JournalController extends Controller
                 $style="img/retro.avif";
                 $color="white";
             }
+            else if ($id == 6){
+                $style = "glass";
+                $color="white";
+            }
             session(['style'=>$style, 'color'=>$color]);
         return redirect()->route('export');
     }

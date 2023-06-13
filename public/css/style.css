@@ -14,6 +14,8 @@ p {
   color:white;
 }
 
+
+
 p:not(:last-child) {
   margin-bottom: 1.5em;
 }
@@ -26,12 +28,12 @@ body {
   min-height: 100vh;
   
   color: #224;
-  background: url(https://source.unsplash.com/E8Ufcyxz514/2400x1823) center/cover no-repeat fixed;
+  background: url(https://source.unsplash.com/E8Ufcyxz514/2400x1823) center/cover ;
   /* background: url(https://source.unsplash.com/E8Ufcyxz514/2400x1823) center/cover; */
 }
 
 .card-glass{
-  
+  color:white;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

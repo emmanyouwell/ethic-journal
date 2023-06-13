@@ -1,14 +1,27 @@
 @extends('layouts.app')
 
 @section('styles')
+@if (session()->has('style'))
+@if(session()->get('style') === "glass")
+<link rel="stylesheet" href="{{asset('css/style.css')}}">
+@else
 <link rel="stylesheet" href="{{asset('css/export.css')}}">
+@endif
+@endif
 @endsection
 
 @section('script-foot')
 <script src="{{asset('js/script.js')}}"></script>
 @endsection
 @section('navbar')
+@if(session()->has('style'))
+
+@if(session()->get('style')==="glass")
+<nav class="navbar navbar-expand-md navbar-dark shadow-sm">
+@else
 <nav class="navbar navbar-expand-md navbar-light shadow-sm">
+@endif
+@endif
     <div class="container">
         <a class="navbar-brand" href="{{ url('/home') }}">
             {{auth()->user()->name}}
@@ -45,6 +58,7 @@
                     </a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="{{route('pickStyle',4)}}">Default</a>
+                        <a class="dropdown-item" href="{{route('pickStyle',6)}}">Glass</a>
                         <a class="dropdown-item" href="{{route('pickStyle',3)}}">Pink Paint</a>
                         <a class="dropdown-item" href="{{route('pickStyle',1)}}">Red & Black</a>
                         <a class="dropdown-item" href="{{route('pickStyle',2)}}">Minimalist Blue</a>
