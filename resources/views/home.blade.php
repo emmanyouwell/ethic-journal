@@ -67,6 +67,7 @@
 
 @section('content')
 <div class="container">
+   
     <div class="row justify-content-center">
         
         <div class="col-md-8">
@@ -93,6 +94,11 @@
                     </form>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-8">
+           {{$mes->links()}}
         </div>
     </div>
     @foreach($mes as $message)
