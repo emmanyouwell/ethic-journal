@@ -104,7 +104,7 @@
             <div class="col-md-8">
                 <div>{{ $data->links() }}</div>
             </div>
-    
+    s
         </div>
         @foreach ($data as $message)
             <div class="row justify-content-center mt-3">
